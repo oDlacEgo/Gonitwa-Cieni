@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziennik Postaci</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 5px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .journal {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        .hearts-container, .dots-container {
+            text-align: center;
+        }
+
+        .heart-checkbox, .dot-checkbox {
+            display: none;
+        }
+
+        .heart-label, .dot-label {
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .heart-checkbox + .heart-label::before {
+            content: "🖤";
+            font-size: 20px;
+        }
+
+        .heart-checkbox:checked + .heart-label::before {
+            content: "❤️";
+            transform: scale(1.2);
+        }
+
+        .dot-checkbox + .dot-label::before {
+            content: "⚪";
+            font-size: 12px;
+        }
+
+        .dot-checkbox:checked + .dot-label::before {
+            content: "⚫";
+            transform: scale(1.2);
+        }
+
+        .skill {
+            margin-bottom: 10px;
+        }
+
+        .skill-name {
+            display: inline-block;
+            width: 150px;
+            font-size: 14px;
+        }
+
+        .dots-container {
+            display: inline-block;
+        }
+
+        .dots-container label {
+            margin-right: 5px;
+        }
+
+        .textarea-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .textarea-container .textarea-item {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .textarea-container .textarea-item:last-child {
+            margin-right: 0;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: vertical;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .dice-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dice-button, .dice-result {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: auto;
+        }
+
+        .dice-result {
+            background-color: #f4f4f4;
+            color: black;
+            text-align: center;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <div class="journal">
+        <div class="title">Dziennik postaci</div>
+        <p><strong>Punkty życia:</strong></p>
+        <div class="hearts-container">
+            <input type="checkbox" id="heart1" class="heart-checkbox" checked>
+            <label for="heart1" class="heart-label"></label>
+
+            <input type="checkbox" id="heart2" class="heart-checkbox" checked>
+            <label for="heart2" class="heart-label"></label>
+
+            <input type="checkbox" id="heart3" class="heart-checkbox" checked>
+            <label for="heart3" class="heart-label"></label>
+
+            <input type="checkbox" id="heart4" class="heart-checkbox" checked>
+            <label for="heart4" class="heart-label"></label>
+
+            <input type="checkbox" id="heart5" class="heart-checkbox" checked>
+            <label for="heart5" class="heart-label"></label>
+
+            <input type="checkbox" id="heart6" class="heart-checkbox" checked>
+            <label for="heart6" class="heart-label"></label>
+
+            <input type="checkbox" id="heart7" class="heart-checkbox" checked>
+            <label for="heart7" class="heart-label"></label>
+
+            <input type="checkbox" id="heart8" class="heart-checkbox" checked>
+            <label for="heart8" class="heart-label"></label>
+
+            <input type="checkbox" id="heart9" class="heart-checkbox" checked>
+            <label for="heart9" class="heart-label"></label>
+
+            <input type="checkbox" id="heart10" class="heart-checkbox" checked>
+            <label for="heart10" class="heart-label"></label>
+
+            <input type="checkbox" id="heart11" class="heart-checkbox" checked>
+            <label for="heart11" class="heart-label"></label>
+
+            <input type="checkbox" id="heart12" class="heart-checkbox" checked>
+            <label for="heart12" class="heart-label"></label>
+        </div>
+        <p><strong>Umiejętności:</strong></p>
+        <div class="skill">
+            <span class="skill-name">Szósty zmysł:</span>
+            <div class="dots-container">
+                <input type="checkbox" id="skill1-dot1" class="dot-checkbox" checked>
+                <label for="skill1-dot1" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot2" class="dot-checkbox" checked>
+                <label for="skill1-dot2" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot3" class="dot-checkbox" checked>
+                <label for="skill1-dot3" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot4" class="dot-checkbox">
+                <label for="skill1-dot4" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot5" class="dot-checkbox">
+                <label for="skill1-dot5" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot6" class="dot-checkbox">
+                <label for="skill1-dot6" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot7" class="dot-checkbox">
+                <label for="skill1-dot7" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot8" class="dot-checkbox">
+                <label for="skill1-dot8" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot9" class="dot-checkbox">
+                <label for="skill1-dot9" class="dot-label"></label>
+                <input type="checkbox" id="skill1-dot10" class="dot-checkbox">
+                <label for="skill1-dot10" class="dot-label"></label>
+            </div>
+        </div>
+        <div class="skill">
+            <span class="skill-name">Kondycja:</span>
+            <div class="dots-container">
+                <input type="checkbox" id="skill2-dot1" class="dot-checkbox" checked>
+                <label for="skill2-dot1" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot2" class="dot-checkbox" checked>
+                <label for="skill2-dot2" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot3" class="dot-checkbox" checked>
+                <label for="skill2-dot3" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot4" class="dot-checkbox">
+                <label for="skill2-dot4" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot5" class="dot-checkbox">
+                <label for="skill2-dot5" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot6" class="dot-checkbox">
+                <label for="skill2-dot6" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot7" class="dot-checkbox">
+                <label for="skill2-dot7" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot8" class="dot-checkbox">
+                <label for="skill2-dot8" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot9" class="dot-checkbox">
+                <label for="skill2-dot9" class="dot-label"></label>
+                <input type="checkbox" id="skill2-dot10" class="dot-checkbox">
+                <label for="skill2-dot10" class="dot-label"></label>
+            </div>
+        </div>
+        <div class="skill">
+            <span class="skill-name">Wytrzymałość:</span>
+            <div class="dots-container">
+                <input type="checkbox" id="skill3-dot1" class="dot-checkbox" checked>
+                <label for="skill3-dot1" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot2" class="dot-checkbox" checked>
+                <label for="skill3-dot2" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot3" class="dot-checkbox" checked>
+                <label for="skill3-dot3" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot4" class="dot-checkbox">
+                <label for="skill3-dot4" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot5" class="dot-checkbox">
+                <label for="skill3-dot5" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot6" class="dot-checkbox">
+                <label for="skill3-dot6" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot7" class="dot-checkbox">
+                <label for="skill3-dot7" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot8" class="dot-checkbox">
+                <label for="skill3-dot8" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot9" class="dot-checkbox">
+                <label for="skill3-dot9" class="dot-label"></label>
+                <input type="checkbox" id="skill3-dot10" class="dot-checkbox">
+                <label for="skill3-dot10" class="dot-label"></label>
+            </div>
+        </div>
+        <div class="skill">
+            <span class="skill-name">Zręczność:</span>
+            <div class="dots-container">
+                <input type="checkbox" id="skill4-dot1" class="dot-checkbox" checked>
+                <label for="skill4-dot1" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot2" class="dot-checkbox" checked>
+                <label for="skill4-dot2" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot3" class="dot-checkbox" checked>
+                <label for="skill4-dot3" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot4" class="dot-checkbox">
+                <label for="skill4-dot4" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot5" class="dot-checkbox">
+                <label for="skill4-dot5" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot6" class="dot-checkbox">
+                <label for="skill4-dot6" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot7" class="dot-checkbox">
+                <label for="skill4-dot7" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot8" class="dot-checkbox">
+                <label for="skill4-dot8" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot9" class="dot-checkbox">
+                <label for="skill4-dot9" class="dot-label"></label>
+                <input type="checkbox" id="skill4-dot10" class="dot-checkbox">
+                <label for="skill4-dot10" class="dot-label"></label>
+            </div>
+        </div>
+        <div class="textarea-container">
+            <div class="textarea-item">
+                <p><strong>Broń:</strong></p>
+                <textarea id="bron" rows="3" placeholder="Dodaj szczegóły dotyczące broni..."></textarea>
+            </div>
+            <div class="textarea-item">
+                <p><strong>Pancerz:</strong></p>
+                <textarea id="pancerz" rows="3" placeholder="Dodaj szczegóły dotyczące pancerza..."></textarea>
+            </div>
+        </div>
+        <div class="textarea-container">
+            <div class="textarea-item">
+                <p><strong>Przedmioty:</strong></p>
+                <textarea id="przedmioty" rows="3" placeholder="Dodaj szczegóły dotyczące przedmiotów..."></textarea>
+            </div>
+            <div class="textarea-item">
+                <p><strong>Notatki:</strong></p>
+                <textarea id="notatki" rows="3" placeholder="Dodaj szczegóły dotyczące notatek..."></textarea>
+            </div>
+        </div>
+        <div class="dice-container">
+            <button class="dice-button" onclick="rollDice()">Rzuć kości</button>
+            <input type="text" class="dice-result" id="diceResult" readonly>
+        </div>
+    </div>
+
+    <script>
+        function saveData() {
+            const hearts = [];
+            document.querySelectorAll('.heart-checkbox').forEach(checkbox => {
+                hearts.push(checkbox.checked);
+            });
+
+            const skills = {};
+            document.querySelectorAll('.skill').forEach(skill => {
+                const skillName = skill.querySelector('.skill-name').textContent.trim();
+                const skillDots = [];
+                skill.querySelectorAll('.dot-checkbox').forEach(dot => {
+                    skillDots.push(dot.checked);
+                });
+                skills[skillName] = skillDots;
+            });
+
+            const notes = {
+                bron: document.getElementById('bron').value,
+                pancerz: document.getElementById('pancerz').value,
+                przedmioty: document.getElementById('przedmioty').value,
+                notatki: document.getElementById('notatki').value
+            };
+
+            const data = { hearts, skills, notes };
+            localStorage.setItem('journalData', JSON.stringify(data));
+        }
+
+        function loadData() {
+            const data = JSON.parse(localStorage.getItem('journalData'));
+            if (!data) return;
+
+            document.querySelectorAll('.heart-checkbox').forEach((checkbox, index) => {
+                checkbox.checked = data.hearts[index];
+            });
+
+            Object.keys(data.skills).forEach(skillName => {
+                const skillDots = data.skills[skillName];
+                const skillElement = Array.from(document.querySelectorAll('.skill')).find(skill => skill.querySelector('.skill-name').textContent.trim() === skillName);
+                if (skillElement) {
+                    skillElement.querySelectorAll('.dot-checkbox').forEach((dot, index) => {
+                        dot.checked = skillDots[index];
+                    });
+                }
+            });
+
+            document.getElementById('bron').value = data.notes.bron;
+            document.getElementById('pancerz').value = data.notes.pancerz;
+            document.getElementById('przedmioty').value = data.notes.przedmioty;
+            document.getElementById('notatki').value = data.notes.notatki;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+        window.addEventListener('beforeunload', saveData);
+
+        function rollDice() {
+            const dice1 = Math.floor(Math.random() * 6) + 1;
+            const dice2 = Math.floor(Math.random() * 6) + 1;
+
+            const resultElement = document.getElementById('diceResult');
+            resultElement.value = `Wynik: ${dice1} i ${dice2} (suma: ${dice1 + dice2})`;
+        }
+    </script>
+</body>
+</html>
